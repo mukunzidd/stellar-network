@@ -1,0 +1,11 @@
+{
+  "name": "stellar-net",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Dodo MKNZ <dmukunzi0@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "node-fetch": "^2.5.0",
+    "stellar-sdk": "^0.15.4"
+  }
+}
