@@ -3,15 +3,19 @@ const fetch = require("node-fetch");
 
 // Gen a keypair && ask friendbot to fund it with XLMs
 async function createAccount() {
-  const pair = StellarSdk.Keypair.random();
-  console.log("Requesting XLMs");
+  try {
+    const pair = StellarSdk.Keypair.random();
+    console.log("Requesting XLMs");
 
-  //   Asking friendbot to give us some lumens on the new a/c
-  await fetch(
-    `https://horizon-testnet.stellar.org/friendbot?addr=${pair.publicKey()}`
-  );
+    //   Asking friendbot to give us some lumens on the new a/c
+    await fetch(
+      `https://horizon-testnet.stellar.org/friendbot?addr=${pair.publicKey()}`
+    );
 
-  return pair;
+    return pair;
+  } catch (e) {
+    console.error("ERROR!", e);
+  }
 }
 
 async function run() {
@@ -34,6 +38,19 @@ async function run() {
 
   const response = await fetch(url);
   const payload = await response.json();
+
+  // create server
+  try {
+    console.log(`Attempting to get balances...`);
+    const server = new StellarSdk.Server("https://horizon-testnet.stellar.org");
+    const account = await server.loadAccount(pair.publicKey());
+    console.log(`Balance for account: ${pair.publicKey()}`);
+    account.balances.map(balance => {
+      console.log("Type:", balance.asset_type, ", Balance:", balance.balance);
+    });
+  } catch (e) {
+    console.log("ERROR getting the a/c balances");
+  }
 }
 
 run();
