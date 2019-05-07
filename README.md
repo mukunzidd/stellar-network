@@ -10,17 +10,25 @@ Follow the following steps to clone and set up the project:
 2. `cd stellar-network`
 3. `yarn install`
 
+### API Routes
+
+1. app.get('/newAccount', creatingAccount)
+2. app.get('/accounts', getAccounts)
+3. app.post('/faucet',getFromFaucet)
+4. app.post('/balance', getBalance)
+5. app.post('/payment', makePayment)
+
 ### Pushing Changes
 
 1. Open Terminal.
 2. `git pull`
 3. `git add file_name.py`
 4. `git commit -m "type(component): subject line"`
-5. `git push origin 123-short-name `
+5. `git push origin 123-short-name`
 
 ### Commit Messages
 
-*We follow the [Angular commit guidelines](https://github.com/angular/angular.js/blob/master/DEVELOPERS.md#-git-commit-guidelines) so that we can generate changelogs and have a clean commit history — see Pushing Changes #3 for an example commit.*
+_We follow the [Angular commit guidelines](https://github.com/angular/angular.js/blob/master/DEVELOPERS.md#-git-commit-guidelines) so that we can generate changelogs and have a clean commit history — see Pushing Changes #3 for an example commit._
 
 - Type, for your commit message commiting you should select a type from this list below:
   - feat: a new features
